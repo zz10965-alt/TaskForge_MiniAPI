@@ -1,0 +1,17 @@
+# src/main/resources/application-prod.yml
+spring:
+  datasource:
+    # RDS endpoint
+    driver-class-name: com.mysql.cj.jdbc.Driver # 加一行不然他默认去跑h2
+    url: jdbc:mysql://taskforge-db.cafc484q68tc.us-east-1.rds.amazonaws.com:3306/taskforge?useSSL=false&serverTimezone=UTC
+    username: ${DB_USER:admin}
+    #   AWS Master password
+    password: ${DB_PASS:Zzx040209}
+  jpa:
+    hibernate:
+      # ddl-auto: update 会让 Hibernate 检查并创建/更新 tasks 表
+      ddl-auto: update
+    show-sql: true
+    properties:
+      # MySQL 8.0 的方言，让 Hibernate 知道如何生成正确的 SQL 语句
+      hibernate.dialect: org.hibernate.dialect.MySQL8Dialect

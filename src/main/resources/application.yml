@@ -1,0 +1,23 @@
+# src/main/resources/application.yml (H2 配置)
+spring:
+  # 数据库连接：使用内存数据库 H2
+  datasource:
+    url: jdbc:h2:mem:taskforge
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    # ddl-auto: create-drop：程序启动时创建表，停止时删除表
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    # 告诉 JPA 使用 H2 方言
+    properties:
+      hibernate.dialect: org.hibernate.dialect.H2Dialect
+  # **关键：启用 H2 Console**
+  h2:
+    console:
+      enabled: true
+      path: /h2-console # H2 Console 的访问路径
+      settings:
+        web-allow-others: true
